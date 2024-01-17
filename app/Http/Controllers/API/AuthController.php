@@ -110,19 +110,21 @@ class AuthController extends Controller
         ], 200);
     }
 
-    public function logout(Request $request){
-        try{
-            $request::user()->tokens()->delete();
-            return response()->json([
-                'message' => 'User logged out successfully',
-            ], 200);
-        }
+    public function logout(){
 
-        catch(\Throwable $th){
-            return response()->json([
-                'message' => 'Error, coudn\'t logout user',
-                'data' => $th->getMessage()
-            ], 500);
-        }
+        Auth::user()->tokens()->delete();
+        return response()->json([
+            'message' => 'User logged out successfully',
+        ], 200);
+        // try{
+           
+        // }
+
+        // catch(\Throwable $th){
+        //     return response()->json([
+        //         'message' => 'Error, coudn\'t logout user',
+        //         'data' => $th->getMessage()
+        //     ], 500);
+        // }
     }
 }
